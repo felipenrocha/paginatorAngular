@@ -1,0 +1,30 @@
+<div style="text-align: center">
+
+
+    <div *ngFor="let content of data">
+        {{content.name}}
+    </div>
+    <ul class="pagination">
+        <li>
+            <a (click)="this.pulaPagina(1)" [ngClass]="this.pagInicial ? 'disable' : 'arrows'">❮❮</a>
+        </li>
+
+        <li>
+            <a (click)="!this.pagInicial ? prevPage() : ''" [ngClass]="this.pagInicial ? 'disable' : 'arrows'">❮</a>
+        </li>
+
+        <li *ngFor='let in of counter(this.elementoInicial+3); let i = index' [ngClass]="i + 1 == this.paginaAtual ? 'active': ''">
+            <a *ngIf="(i+1 <= (this.elementoInicial + 5) &&	((i+1) > this.elementoInicial))" [ngClass]="i + 1 == this.paginaAtual ? 'active': ''"
+            (click)="this.pulaPagina(i+1)">{{ i + 1 }}</a>
+        </li>
+
+        <li>
+            <a (click)="!this.pagFinal ? nextPage() : ''" [ngClass]="this.pagFinal ? 'disable' : 'arrows'">❯</a>
+        </li>
+        <li>
+            <a (click)="this.pulaPagina(this.numeroPaginas)" [ngClass]="this.pagFinal ? 'disable' : 'arrows'">❯❯</a>
+        </li>
+
+    </ul>
+
+</div>
